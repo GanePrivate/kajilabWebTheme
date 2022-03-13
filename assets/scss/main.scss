@@ -855,7 +855,7 @@ figcaption {
 .left,
 .right {
   span {
-    display: none;
+    // display: none;
     @include for-tablet-up {
       display: block;
       overflow: hidden;
