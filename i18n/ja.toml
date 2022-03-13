@@ -36,7 +36,7 @@
   one = "1 分で読めます"
   other = "{{ .Count }} 分で読めます"
 [read_more]
-  other = "続きを読む"
+  other = "記事を読む"
 [share_post]
   other = "この投稿をシェアする"
 [check_out]

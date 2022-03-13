@@ -61,9 +61,9 @@ window.onload = function () {
 
   var lang = document.documentElement.lang;
   var pathArgs = ["{{ replaceRE "/$" "" .Site.BaseURL }}", "index.json"];
-  if (lang != "{{ .Site.Language }}") {
-    pathArgs.splice(1, 0, lang);
-  }
+  // if (lang != "{{ .Site.Language }}") {
+  //   pathArgs.splice(1, 0, lang);
+  // }
   path = pathArgs.join("/");
   request.open("GET", path, true); // Request the JSON file created during build
   request.onload = function() {

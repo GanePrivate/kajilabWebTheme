@@ -239,8 +239,26 @@ iframe,
 img,
 svg,
 video {
-  vertical-align: middle;
+  // vertical-align: middle;
   max-width: 100%;
+  display: block;
+  margin:auto;
+
+}
+
+@media screen and (min-width:768px) {
+    /*　画面サイズが768pxから1024pxまではここを読み込む　*/
+    audio,
+    canvas,
+    iframe,
+    img,
+    svg,
+    video {
+      // vertical-align: middle;
+      max-width: 60%;
+      display: block;
+      margin:auto;
+    }
 }
 
 /*

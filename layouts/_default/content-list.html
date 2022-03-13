@@ -2,7 +2,9 @@
   {{ .Render "header" }}
   <div class="content">
     {{ .Render "featured" }}
-    {{ $.Scratch.Set "summary" ((delimit (findRE "<p.*?>(.|\n)*?</p>" .Content 1) "") | truncate (default 500 .Site.Params.summary_length) (default "&hellip;" .Site.Params.text.truncated ) | replaceRE "&amp;" "&" | safeHTML) }}
+    <!-- {{ $.Scratch.Set "summary" (.Content | truncate (default 500 .Site.Params.summary_length) (default "&hellip;" .Site.Params.text.truncated ) | replaceRE "&amp;" "&" | safeHTML) }} -->
+    <!-- 表示量を変えたいなら上のに差し替える -->
+    {{ $.Scratch.Set "summary" (.Content | replaceRE "&amp;" "&" | safeHTML) }}
     {{ $.Scratch.Get "summary" }}
   </div>
   <footer>
