@@ -1410,7 +1410,8 @@ figcaption {
       "sidebar main"
       "footer main"
       "blank main";
-    grid-template-columns: 22em 1fr;
+    // grid-template-columns: 22em 1fr;
+    grid-template-columns: 1fr minmax(200px, 2fr);
     grid-template-rows: auto auto auto 1fr;
     padding: 0 2.5em;
   }
