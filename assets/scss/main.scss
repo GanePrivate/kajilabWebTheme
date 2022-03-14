@@ -1411,12 +1411,28 @@ figcaption {
       "footer main"
       "blank main";
     // grid-template-columns: 22em 1fr;
-    grid-template-columns: 1fr minmax(200px, 2fr);
+    grid-template-columns: 1fr minmax(200px, 2.85fr);
     grid-template-rows: auto auto auto 1fr;
     padding: 0 2.5em;
   }
   &.overlay {
     opacity: 0.25;
+  }
+}
+
+@media screen and (min-width:1080px) and (max-width:1150px) {
+  #wrapper {
+    @include for-desktop-up {
+      grid-template-columns: 1.3fr minmax(200px, 2.85fr);
+    }
+  }
+}
+
+@media screen and (min-width:1024px) and (max-width:1080px) {
+  #wrapper {
+    @include for-desktop-up {
+      grid-template-columns: 1.6fr minmax(200px, 2.85fr);
+    }
   }
 }
 
