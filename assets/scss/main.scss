@@ -259,6 +259,10 @@ video {
       display: block;
       margin:auto;
     }
+
+    .slider {
+        max-width:94%;
+    }
 }
 
 /*
@@ -324,6 +328,7 @@ a {
   border-bottom: $secondary-border;
   color: inherit;
   text-decoration: none;
+  overflow-wrap: break-word;
   transition: border-bottom-color $hover, color $hover;
   &:hover {
     border-bottom-color: transparent;
@@ -1843,7 +1848,7 @@ figcaption {
 }
 
 .slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
-        width:94%;
+        width:100%;
         margin:0 auto;
     }
 
