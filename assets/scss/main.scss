@@ -267,6 +267,13 @@ video {
     }
 }
 
+@media screen and (max-width:768px) {
+  .title a {
+      letter-spacing: .1em;
+      font-size: .9em;
+    }
+}
+
 /*
 * Remove default fieldset styles.
 */
