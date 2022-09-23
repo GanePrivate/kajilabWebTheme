@@ -1,33 +1,36 @@
 {{- if .Site.Params.enableCDN -}}
   {{- if .Site.Params.highlightjs -}}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" defer></script>
     {{ with .Site.Params.highlightjsLang }}{{ range . }}<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/{{ . }}.min.js"></script>{{ end }}{{ end }}
     <script>hljs.highlightAll();</script>
   {{- end -}}
   {{- range .Site.Params.jsFiles -}}
     {{- if eq . "default" -}}
-    <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
-    <script src="//unpkg.com/lunr/lunr.js"></script>
+    <script src="//code.jquery.com/jquery-3.5.1.min.js" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js" defer></script>
+    <script src="//unpkg.com/lunr/lunr.js" defer></script>
       {{- $jsSlice := slice (resources.Get "js/util.js") (resources.Get "js/main.js" | resources.ExecuteAsTemplate "js/main.js" $.Site) -}}
       {{- /* Backwards compatibility for deprecated parameter ".Site.Params.staticman.staticman" */ -}}
       {{- if or $.Site.Params.staticman.enabled $.Site.Params.staticman.staticman -}}
         {{- $jsSlice = $jsSlice | append (resources.Get "js/staticman.js" | resources.ExecuteAsTemplate "js/staticman.js" $.Site.Params.staticman) -}}
       {{- end }}
       {{- $js := $jsSlice | resources.Concat "js/bundlecdn.js" | minify | fingerprint -}}
-    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-    <script src="{{ "js/add-on.js" | relURL }}"></script>
-    <script src="{{ "js/slick.min.js" | relURL }}"></script>
-    <script src="{{ "js/img-slide-show.js" | relURL }}"></script>
+    <script src="{{ $js.RelPermalink }}" defer></script>
+    <script src="{{ "js/add-on.js" | relURL }}" defer></script>
+    <script src="{{ "js/slick.min.js" | relURL }}" defer></script>
+    <script src="{{ "js/img-slide-show.js" | relURL }}" defer></script>
+    <script src="{{ "js/lightbox.min.js" | relURL }}" defer></script>
+    <script src="{{ "js/bugfix.js" | relURL }}" defer></script>
+    <script src="{{ "js/sideScrollBar.js" | relURL }}" defer></script>
     {{- else }}
-      <script src="{{ . | relURL }}"></script>
+      <script src="{{ . | relURL }}" defer></script>
     {{- end -}}
   {{- end -}}
 {{- else -}}
   {{- if .Site.Params.highlightjs -}}
     {{- $hljs := resources.Get "js/highlight.js" -}}
     <script src="{{ $hljs.RelPermalink }}"></script>
-    {{ with .Site.Params.highlightjsLang }}{{ range . }}<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/{{ . }}.min.js"></script>{{ end }}{{ end }}
+    {{ with .Site.Params.highlightjsLang }}{{ range . }}<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/{{ . }}.min.js" defer></script>{{ end }}{{ end }}
     <script>hljs.highlightAll();</script>
   {{- end -}}
   {{- range .Site.Params.jsFiles -}}
@@ -43,16 +46,19 @@
         {{- $jsSlice = $jsSlice | append (resources.Get "js/staticman.js" | resources.ExecuteAsTemplate "js/staticman.js" $.Site.Params.staticman) -}}
       {{- end -}}
       {{- $js := $jsSlice | resources.Concat "js/bundle.js" | minify | fingerprint -}}
-    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-    <script src="{{ "js/add-on.js" | relURL }}"></script>
-    <script src="{{ "js/slick.min.js" | relURL }}"></script>
-    <script src="{{ "js/img-slide-show.js" | relURL }}"></script>
+    <script src="{{ $js.RelPermalink }}" defer></script>
+    <script src="{{ "js/add-on.js" | relURL }}" defer></script>
+    <script src="{{ "js/slick.min.js" | relURL }}" defer></script>
+    <script src="{{ "js/img-slide-show.js" | relURL }}" defer></script>
+    <script src="{{ "js/lightbox.min.js" | relURL }}" defer></script>
+    <script src="{{ "js/bugfix.js" | relURL }}" defer></script>
+    <script src="{{ "js/sideScrollBar.js" | relURL }}" defer></script>
     {{- else }}
-      <script src="{{ . | relURL }}"></script>
+      <script src="{{ . | relURL }}" defer></script>
     {{- end -}}
   {{- end -}}
 {{- end -}}
 {{ if and .Site.Params.staticman.recaptcha.siteKey .Site.Params.staticman.recaptcha.encryptedKey }}
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script src='https://www.google.com/recaptcha/api.js' defer></script>
 {{- end -}}
 {{- template "_internal/google_analytics_async.html" . -}}

@@ -6,6 +6,7 @@
     <div id="wrapper">
       {{ partial "site-intro" . }}
       <main id="site-main">
+        <!-- {{ if .Site.Params.news.newsView }}{{ partial "news" . }}{{ end }} -->
         {{ block "main" . }}{{ end }}
       </main>
       {{ partial "site-sidebar" . }}

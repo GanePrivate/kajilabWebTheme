@@ -104,23 +104,23 @@ window.onload = function () {
   request.send();
 
   // Register handler for the search input field
-  registerSearchHandler();
+  // registerSearchHandler();
 };
 
-function registerSearchHandler() {
-  $searchInput.oninput = function(event) {
-    var query = event.target.value;
-    var results = search(query);  // Perform the search
+// function registerSearchHandler() {
+//   $searchInput.oninput = function(event) {
+//     var query = event.target.value;
+//     var results = search(query);  // Perform the search
 
-    // Render search results
-    renderSearchResults(results);
+//     // Render search results
+//     renderSearchResults(results);
 
-    // Remove search results if the user empties the search phrase input field
-    if ($searchInput.value == '') {
-      $searchResults.innerHTML = '';
-    }
-  }
-}
+//     // Remove search results if the user empties the search phrase input field
+//     if ($searchInput.value == '') {
+//       $searchResults.innerHTML = '';
+//     }
+//   }
+// }
 
 function renderSearchResults(results) {
   // Create a list of results

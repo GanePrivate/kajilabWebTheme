@@ -1,5 +1,6 @@
 {{ define "main" }}
   {{ $paginator := .Paginate (cond .IsHome (where site.RegularPages "Type" "in" site.Params.mainSections) (.Data.Pages) ) }}
+  {{ if .Site.Params.news.newsView }}{{ partial "news" . }}{{ end }}
   {{ range $paginator.Pages }}
     {{ .Render "content-list" }}
   {{ end }}

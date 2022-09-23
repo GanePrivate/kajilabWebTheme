@@ -136,6 +136,12 @@ $masks: (
    Breakpoints
    ========================================================================== */
 
+@mixin for-min-320 {
+  @media (max-width: 320px) {
+    @content;
+  }
+}
+
 @mixin for-mobile-m-up {
   @media (min-width: 320px) {
     @content;
@@ -247,15 +253,21 @@ video {
 }
 
 @media screen and (min-width:768px) {
-    /*　画面サイズが768pxから1024pxまではここを読み込む　*/
+    /*　画面サイズが768pxまではここを読み込む　*/
     audio,
     canvas,
     iframe,
-    img,
     svg,
     video {
       // vertical-align: middle;
       max-width: 60%;
+      display: block;
+      margin:auto;
+    }
+
+    img {
+      width: auto;
+      max-height:350px;
       display: block;
       margin:auto;
     }
@@ -876,6 +888,27 @@ figcaption {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+    @include for-min-320 {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @include for-mobile-m-up {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    @include for-mobile-l-up {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   &::before {
     font-family: $fa-free-font;
@@ -988,8 +1021,7 @@ figcaption {
   }
 }
 
-.share-toggle,
-.search-toggle {
+.share-toggle {
   display: none;
   @include for-tablet-up {
     display: block;
@@ -998,6 +1030,16 @@ figcaption {
     i {
      vertical-align: middle;
     }
+  }
+}
+
+.search-toggle {
+  display: block;
+  text-align: center;
+  width: 61px;
+
+  i {
+    vertical-align: middle;
   }
 }
 
@@ -1181,14 +1223,18 @@ figcaption {
       transition: none;
       white-space: nowrap;
       &::-webkit-scrollbar {
-        height: 0.25em;
+        height: 0.27em;
       }
       &::-webkit-scrollbar-track {
         -webkit-box-shadow: $shadow-scroll;
       }
       &::-webkit-scrollbar-thumb {
-        background-color: $utility-gray;
+        // background-color: $utility-gray;
+        // outline: 1px solid $utility-gray-2;
+        
+        background-color: #f7f0f0;
         outline: 1px solid $utility-gray-2;
+        // scrollbar-color: #6969dd #e0e0e0;
       }
     }
     &.active {
@@ -1198,11 +1244,11 @@ figcaption {
       }
     }
     .search-toggle {
-      display: inline-flex;
+      display: none;
       flex-basis: 100%;
       order: 1;
     }
-    .share-toggle, .search-toggle {
+    .share-toggle {
       display: block;
       flex-basis: 100%;
       order: 3;
@@ -1333,6 +1379,9 @@ figcaption {
     margin: auto;
     width: max-content;
   }
+  h2 {
+    text-transform: none;
+  }
 }
 
 #categories {
@@ -1358,6 +1407,10 @@ figcaption {
 
 #site-main {
   grid-area: main;
+}
+
+#site-main h2{
+  text-transform: none;
 }
 
 #site-footer {
@@ -1451,9 +1504,16 @@ figcaption {
 }
 
 @media screen and (min-width:1024px) {
-    #wrapper {
-      display: grid;
-    }
+  #wrapper {
+    display: grid;
+  }
+}
+
+@media screen and (min-width:1024px) and (max-width:1410px) {
+  #site-nav-menu > a{
+    padding: 0 1.25em;
+    letter-spacing: initial;
+  }
 }
 
 #TableOfContents {
@@ -1859,73 +1919,73 @@ figcaption {
 .slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
         width:100%;
         margin:0 auto;
-    }
+}
 
-    .slider img {
-        // width:100%;/*スライダー内の画像を横幅100%に*/
-        // height:auto;
-        width:auto;
-        max-height: 400px;
-    }
+.slider img {
+    // width:100%;/*スライダー内の画像を横幅100%に*/
+    // height:auto;
+    width:auto;
+    max-height: 400px;
+}
 
-    /*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
 
-    .slider .slick-slide {
-        margin:0 10px;
-    }
+.slider .slick-slide {
+    margin:0 10px;
+}
 
-    /*矢印の設定*/
+/*矢印の設定*/
 
-    /*戻る、次へ矢印の位置*/
-    .slick-prev, 
-    .slick-next {
-        position: absolute;/*絶対配置にする*/
-        top: 42%;
-        cursor: pointer;/*マウスカーソルを指マークに*/
-        outline: none;/*クリックをしたら出てくる枠線を消す*/
-        border-top: 2px solid #666;/*矢印の色*/
-        border-right: 2px solid #666;/*矢印の色*/
-        height: 15px;
-        width: 15px;
-    }
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+    position: absolute;/*絶対配置にする*/
+    top: 42%;
+    cursor: pointer;/*マウスカーソルを指マークに*/
+    outline: none;/*クリックをしたら出てくる枠線を消す*/
+    border-top: 2px solid #666;/*矢印の色*/
+    border-right: 2px solid #666;/*矢印の色*/
+    height: 15px;
+    width: 15px;
+}
 
-    .slick-prev {/*戻る矢印の位置と形状*/
-        left: 1%;
-        transform: rotate(-135deg);
-    }
+.slick-prev {/*戻る矢印の位置と形状*/
+    left: 1%;
+    transform: rotate(-135deg);
+}
 
-    .slick-next {/*次へ矢印の位置と形状*/
-        right: 1%;
-        transform: rotate(45deg);
-    }
+.slick-next {/*次へ矢印の位置と形状*/
+    right: 1%;
+    transform: rotate(45deg);
+}
 
-    /*ドットナビゲーションの設定*/
+/*ドットナビゲーションの設定*/
 
-    .slick-dots {
-        text-align:center;
-        margin:20px 0 0 0;
-    }
+.slick-dots {
+    text-align:center;
+    margin:20px 0 0 0;
+}
 
-    .slick-dots li {
-        display:inline-block;
-        margin:0 5px;
-    }
+.slick-dots li {
+    display:inline-block;
+    margin:0 5px;
+}
 
-    .slick-dots button {
-        color: transparent;
-        outline: none;
-        width:10px;/*ドットボタンのサイズ*/
-        height:10px;/*ドットボタンのサイズ*/
-        display:block;
-        border-radius:50%;
-        background:#ccc;/*ドットボタンの色*/
-        font-size: 3px;
-    }
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width:10px;/*ドットボタンのサイズ*/
+    height:10px;/*ドットボタンのサイズ*/
+    display:block;
+    border-radius:50%;
+    background:#ccc;/*ドットボタンの色*/
+    font-size: 3px;
+}
 
-    .slick-dots .slick-active button{
-        background:#333;/*ドットボタンの現在地表示の色*/
-    }
+.slick-dots .slick-active button{
+    background:#333;/*ドットボタンの現在地表示の色*/
+}
 
-    .img-container ul{
-        padding: 0px 10px;
-    }
+.img-container ul{
+    padding: 0px 10px;
+}
