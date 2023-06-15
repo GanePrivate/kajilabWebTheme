@@ -2,6 +2,7 @@
 <html lang="{{ .Page.Language | default "en" }}">
   {{ partial "head" . }}
   <body>
+    {{ if .Site.Params.snow.snowView }}{{ partial "snow" . }}{{ end }}
     {{ partial "site-header" . }}
     <div id="wrapper">
       {{ partial "site-intro" . }}

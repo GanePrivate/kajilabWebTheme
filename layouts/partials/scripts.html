@@ -25,6 +25,10 @@
     {{- else }}
       <script src="{{ . | relURL }}" defer></script>
     {{- end -}}
+    {{- if .Site.Params.snow.snowView -}}
+    <script src="{{ "js/particles.min.js" | relURL }}" defer></script>
+    <script src="{{ "js/snow.js" | relURL }}" defer></script>
+    {{- end -}}
   {{- end -}}
 {{- else -}}
   {{- if .Site.Params.highlightjs -}}
@@ -56,6 +60,10 @@
     {{- else }}
       <script src="{{ . | relURL }}" defer></script>
     {{- end -}}
+  {{- end -}}
+  {{- if .Site.Params.snow.snowView -}}
+  <script src="{{ "js/particles.min.js" | relURL }}" defer></script>
+  <script src="{{ "js/snow.js" | relURL }}" defer></script>
   {{- end -}}
 {{- end -}}
 {{ if and .Site.Params.staticman.recaptcha.siteKey .Site.Params.staticman.recaptcha.encryptedKey }}
